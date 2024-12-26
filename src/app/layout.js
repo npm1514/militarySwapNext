@@ -1,4 +1,5 @@
 import './globals.css';
+import { Header, Footer } from '@/components';
 
 export const metadata = {
 	title: 'Military Swap',
@@ -8,13 +9,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
 	return (
 		<html lang='en'>
-			<body>
-				<header>
-					<div>Military Swap</div>
-					<div>Buy from, Sell to, and Employ Active Duty and Veterans Only</div>
-				</header>
-				<main>{children}</main>
-				<footer>copyright Military Swap {new Date().getFullYear()}</footer>
+			<body className='max-w-[1400px] m-auto'>
+				<Header />
+				<main className='p-4 pt-0'>{children}</main>
+				<Footer />
 			</body>
 		</html>
 	);

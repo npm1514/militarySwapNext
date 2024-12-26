@@ -1,29 +1,38 @@
-const listOfTestUsers = {
-	123456: {
+export const listOfTestUsers = [
+	{
 		name: 'Nick Marucci',
 		email: 'npm1514@gmail.com',
-		address: '1149 S 300 E',
-		city: 'Salt Lake City',
-		state: 'UT',
+		branch: 'Marine Corps',
 		zip: 84111,
+		id: 123456,
+		phone: '801-203-1669',
 		itemsList: [1234567, 2345678],
 	},
-	234567: {
+	{
 		name: 'Steve Boback',
 		email: 'stevie@gmail.com',
-		address: '968 S 1000 E',
-		city: 'Salt Lake City',
-		state: 'UT',
+		branch: 'Navy',
 		zip: 84105,
+		id: 234567,
+		phone: '801-469-2843',
 		itemsList: [3456789, 4567890],
 	},
-	345678: {
+	{
 		name: 'Vanessa Thompson',
 		email: 'v_dogg@gmail.com',
-		address: '5301 Montrose St',
-		city: 'Murray',
-		state: 'UT',
+		branch: 'Army',
 		zip: 84107,
+		id: 345678,
+		phone: '801-969-0778',
 		itemsList: [5678901],
 	},
+];
+export const defaultUser = {
+	name: '',
+	email: '',
+	branch: '',
+	zip: 0,
+	id: 0,
+	phone: '',
+	itemsList: [],
 };

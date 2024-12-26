@@ -1,12 +1,14 @@
-const listOfTestListings = [
+export const listOfTestListings = [
 	{
 		id: 1234567,
 		title: 'Lawn Mower',
 		images: [
 			'https://hips.hearstapps.com/hmg-prod/images/mower-1568302588.jpg?crop=1.00xw:1.00xh;0,0&resize=640:*',
+			'https://media.istockphoto.com/id/520135246/photo/mowing-the-grass.jpg?s=612x612&w=0&k=20&c=9ZlrazlneuDiU6Rdv9nYq0k_ZNoGwJ_JXTiE8djJGVc=',
+			'https://images.unsplash.com/photo-1635614986085-bf0d7a4ae4da?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGF3biUyMG1vd2VyfGVufDB8fDB8fHww',
 		],
-		price: 100,
-		location: ['40.743424', '-111.882760'],
+		price: 60,
+		zip: 84111,
 		timePosted: '04/06/2024',
 		description: 'Works well. Just changed oil. Asking $60 OBO.',
 		condition: 'good',
@@ -20,7 +22,7 @@ const listOfTestListings = [
 			'https://m.media-amazon.com/images/I/71n3Kd9GMZL._AC_UF894,1000_QL80_.jpg',
 		],
 		price: 250,
-		location: ['40.743424', '-111.882760'],
+		zip: 84111,
 		timePosted: '05/06/2024',
 		description:
 			"SMETA Refrigerator French Door with Ice Maker, 36'' Frost-free Counter Depth",
@@ -35,7 +37,7 @@ const listOfTestListings = [
 			'https://www.flybar.com/cdn/shop/products/V_220707_ListingImages_PogoSticks_V4_1.jpg?v=1700646894',
 		],
 		price: 50,
-		location: ['40.745606', '-111.866555'],
+		zip: 84103,
 		timePosted: '04/15/2024',
 		description:
 			'Fun Pogo Stick. Scratches up the side from normal use. Otherwise functions just fine.',
@@ -50,7 +52,7 @@ const listOfTestListings = [
 			'https://summerschool.lsr7.org/wp-content/uploads/sites/13/2021/12/product-g.jpg',
 		],
 		price: 160,
-		location: ['40.745606', '-111.866555'],
+		zip: 84103,
 		timePosted: '04/26/2024',
 		description: "Doesn't work, but body is in mint condition.",
 		condition: 'good',
@@ -64,7 +66,7 @@ const listOfTestListings = [
 			'https://img.lakeshorelearning.com/is/image/OCProduction/dd348?wid=800&fmt=jpeg&qlt=85,1&pscan=auto&op_sharpen=0&resMode=sharp2&op_usm=1,0.65,6,0',
 		],
 		price: 50,
-		location: ['40.645475', '-111.874688'],
+		zip: 90210,
 		timePosted: '04/30/2024',
 		description: 'Fun for the kids. Asking $50 OBO.',
 		condition: 'good',
@@ -72,4 +74,15 @@ const listOfTestListings = [
 		contactId: 345678,
 	},
 ];
-export default listOfTestListings;
+export const defaultListing = {
+	id: 0,
+	title: '',
+	images: [],
+	price: 0,
+	zip: 0,
+	timePosted: '',
+	description: '',
+	condition: '',
+	category: '',
+	contactId: 0,
+};

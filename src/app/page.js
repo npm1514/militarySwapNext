@@ -1,56 +1,19 @@
 'use client';
 
-import { useState } from 'react';
+import { useParams } from 'next/navigation';
 import Link from 'next/link';
-import listOfStates from '@/data/listOfStates';
+import listOfCategories from '@/data/listOfCategories';
+import { CategoryCard } from '@/components';
 
 export default function Home() {
-	const [selectedState, setSelectedState] = useState('');
-	const [selectedCounty, setSelectedCounty] = useState('');
 	return (
-		<div>
-			<div className='m-4 flex justify-center'>
-				<h3>State: </h3>
-				<select
-					onChange={(e) => setSelectedState(e.target.value)}
-					value={selectedState}
-				>
-					<option value=''>Pick Your State</option>
-					{Object.keys(listOfStates).map((state, index) => (
-						<option key={state + index} defaultValue='' value={state}>
-							{state}
-						</option>
-					))}
-				</select>
+		<div className='text-center flex flex-col gap-4 mt-4'>
+			<h3>this is the category list page</h3>
+			<div className='flex justify-center gap-4'>
+				{listOfCategories.map((category, index) => (
+					<CategoryCard key={category.category + index} {...category} />
+				))}
 			</div>
-			<div className='m-4 flex justify-center'>
-				<h3>County: </h3>
-				<select
-					onChange={(e) => setSelectedCounty(e.target.value)}
-					value={selectedCounty}
-				>
-					<option value=''>Pick Your County</option>
-					{selectedState ? (
-						listOfStates[selectedState].map((county, index) => (
-							<option key={county + index} value={county}>
-								{county}
-							</option>
-						))
-					) : (
-						<option placholder='Pick State First' disabled={true}>
-							Pick State First
-						</option>
-					)}
-				</select>
-			</div>
-			{selectedState && selectedCounty && (
-				<div className='m-4 flex justify-center'>
-					<Link href={`/${selectedCounty}-${selectedState}`}>
-						{/* fix this */}
-						<button>Go to Your Location</button>
-					</Link>
-				</div>
-			)}
 		</div>
 	);
 }
