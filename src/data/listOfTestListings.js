@@ -13,6 +13,7 @@ export const listOfTestListings = [
 		description: 'Works well. Just changed oil. Asking $60 OBO.',
 		condition: 'good',
 		category: 'Farm & Garden',
+		categoryLink: "/for-sale?subcategory=Farm%20&%20Garden",
 		contactId: 123456,
 	},
 	{
@@ -28,6 +29,7 @@ export const listOfTestListings = [
 			"SMETA Refrigerator French Door with Ice Maker, 36'' Frost-free Counter Depth",
 		condition: 'great',
 		category: 'Appliances',
+		categoryLink: "/for-sale?subcategory=Appliances",
 		contactId: 123456,
 	},
 	{
@@ -43,6 +45,7 @@ export const listOfTestListings = [
 			'Fun Pogo Stick. Scratches up the side from normal use. Otherwise functions just fine.',
 		condition: 'fair',
 		category: 'Toys & Games',
+		categoryLink: "/for-sale?subcategory=Toys%20&%20Games",
 		contactId: 234567,
 	},
 	{
@@ -57,6 +60,7 @@ export const listOfTestListings = [
 		description: "Doesn't work, but body is in mint condition.",
 		condition: 'good',
 		category: 'Antiques',
+		categoryLink: "/for-sale?subcategory=Antiques",
 		contactId: 234567,
 	},
 	{
@@ -71,6 +75,7 @@ export const listOfTestListings = [
 		description: 'Fun for the kids. Asking $50 OBO.',
 		condition: 'good',
 		category: 'Arts & Crafts',
+		categoryLink: "/for-sale?subcategory=Arts%20&%20Crafts",
 		contactId: 345678,
 	},
 ];
