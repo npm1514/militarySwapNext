@@ -25,8 +25,12 @@ const CategoryCard = ({ className, category, subcategories, image }) => {
 			</Link>
 			<div className='w-full flex flex-col justify-between p-2'>
 				<h5>Subcategories Included</h5>
-				{subcategories.map((subcategory) => (
-					<Link href={`/${category}?subcategory=${subcategory}`} className='hover:text-blue-700 hover:bg-gray-50'>
+				{subcategories.map((subcategory, index) => (
+					<Link
+						key={`${subcategory}_${index}`}
+						href={`/${category}?subcategory=${subcategory}`}
+						className='hover:text-blue-700 hover:bg-gray-50'
+					>
 						{subcategory}
 					</Link>
 				))}
