@@ -1,0 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@font-face {
+  font-family: 'norwester';
+  src: url('/norwester.otf');
+}
+
+@font-face {
+  font-family: 'Oswald-Bold';
+  src: url('/Oswald-Bold.ttf');
+}
+
+@font-face {
+  font-family: 'Oswald-ExtraLight';
+  src: url('/Oswald-ExtraLight.ttf');
+}
+
+@font-face {
+  font-family: 'Oswald-Light';
+  src: url('/Oswald-Light.ttf');
+}
+
+@font-face {
+  font-family: 'Oswald-Medium';
+  src: url('/Oswald-Medium.ttf');
+}
+
+@font-face {
+  font-family: 'Oswald-Regular';
+  src: url('/Oswald-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Oswald-SemiBold';
+  src: url('/Oswald-SemiBold.ttf');
+}
+
+.Oswald-Bold {
+  font-family: 'Oswald-Bold';
+}
+.Oswald-ExtraLight {
+  font-family: 'Oswald-ExtraLight';
+}
+.Oswald-Light {
+  font-family: 'Oswald-Light';
+}
+.Oswald-Medium {
+  font-family: 'Oswald-Medium';
+}
+.Oswald-Regular {
+  font-family: 'Oswald-Regular';
+}
+.Oswald-SemiBold {
+  font-family: 'Oswald-SemiBold';
+}
+.norwester {
+  font-family: 'norwester';
+}
+
+body {
+  font-family: 'Oswald-Medium';
+}
+
+main {
+  min-height: 80vh;
+}
+
+select {
+  color: grey;
+}
+
+h1 {
+  font-size: 40px;
+}
+
+h2 {
+  font-size: 30px;
+}
+
+h3 {
+  font-size: 20px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 12px;
+}
+
+h6 {
+  font-size: 10px;
+}
+
+p {
+    color: black;
+    font-size: 8px;
+}
+
+a {
+
+}

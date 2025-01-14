@@ -1,6 +1,7 @@
 "use client";
 
 import classNames from "classnames";
+import Image from "next/image";
 import Link from "next/link";
 
 const CategoryCard = ({ className, category, link, subcategories, image }) => {
@@ -11,11 +12,11 @@ const CategoryCard = ({ className, category, link, subcategories, image }) => {
         className
       )}
     >
-      <Link href={`/${link}`}>
+      <Link href={`/category/${link}`}>
         {/* fix this */}
         <div className="group-hover:bg-blue">
           <div className="h-36 w-full relative">
-            <img className="h-full w-full object-cover rounded-t" src={image} />
+            <Image className="h-full w-full object-cover rounded-t" src={image} alt="category card" />
             <h5 className="top-2 left-2 absolute bg-white rounded-md border border-gray-300 p-1">
               {category}
             </h5>
@@ -24,11 +25,10 @@ const CategoryCard = ({ className, category, link, subcategories, image }) => {
         </div>
       </Link>
       <div className="w-full flex flex-col justify-between p-2">
-        <h5>Subcategories Included</h5>
         {subcategories.map((subcategory) => (
           <Link
             key={subcategory}
-            href={`/${link}?subcategory=${subcategory}`}
+            href={`/category/${link}?subcategory=${subcategory}`}
             className="hover:text-blue-700 hover:bg-gray-50"
           >
             {subcategory}

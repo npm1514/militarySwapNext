@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from 'react';
 import { useParams, useSearchParams } from 'next/navigation';
-import { ListingCard } from '@/components';
-import { listOfTestListings } from '@/data/listOfTestListings';
-import listOfCategories from '@/data/listOfCategories';
+import { ListingCard } from '../../components';
+import { listOfTestListings } from '../../data/listOfTestListings';
+import listOfCategories from '../../data/listOfCategories';
 
 const Category = () => {
 	const [listOfListings, setListOfListings] = useState([]);

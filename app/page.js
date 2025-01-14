@@ -1,13 +1,7 @@
-"use client";
-import { redirect } from 'next/navigation'
-import listOfCategories from "@/data/listOfCategories";
-import { CategoryCard } from "@/components";
-import { useEffect } from "react";
+import listOfCategories from "./data/listOfCategories";
+import { CategoryCard } from "./components";
 
-const IdMeReturnPage = () => {
-  useEffect(() => {
-   redirect("/");
-  }, []);
+export default function Home() {
   return (
     <div className="text-center flex flex-col gap-4 mt-4">
       <h3>Select a category</h3>
@@ -18,6 +12,4 @@ const IdMeReturnPage = () => {
       </div>
     </div>
   );
-};
-
-export default IdMeReturnPage;
+}

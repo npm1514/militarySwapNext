@@ -3,6 +3,7 @@
 import { useParams } from 'next/navigation';
 import classNames from 'classnames';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const ListingCard = ({
 	price,
@@ -20,10 +21,10 @@ const ListingCard = ({
 				className,
 			)}
 		>
-			<Link href={`/${category}/${id}`}>
+			<Link href={`/category/${category}/${id}`}>
 				{/* fix this */}
 				<div className='h-36 w-full relative'>
-					<img className='h-full w-full object-cover' src={images?.[0]} />
+					<Image className='h-full w-full object-cover' src={images?.[0]} alt="listing card image" />
 					{price && (
 						<h5 className='top-2 left-2 absolute bg-white rounded-md border border-gray-300 p-1'>
 							${price}

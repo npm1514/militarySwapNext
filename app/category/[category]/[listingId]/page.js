@@ -1,15 +1,16 @@
 'use client';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { useParams } from 'next/navigation';
-import { listOfTestListings, defaultListing } from '@/data/listOfTestListings';
-import { defaultUser, listOfTestUsers } from '@/data/listOfTestUsers';
+import { redirect, useParams } from 'next/navigation';
+import { listOfTestListings, defaultListing } from '../../../data/listOfTestListings';
+import { defaultUser, listOfTestUsers } from '../../../data/listOfTestUsers';
 import {
 	Modal,
 	ModalContent,
 	Pagination,
 	useDisclosure,
 } from '@nextui-org/react';
+import Image from 'next/image';
 
 const Listing = () => {
 	const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -24,21 +25,30 @@ const Listing = () => {
 	};
 
 	useEffect(() => {
-		// get specific listing
 		const pageListing = listOfTestListings.find((a) => a.id == listingId);
-		setListing(pageListing);
-		const sellerInfo = listOfTestUsers.find(
-			(a) => a.id == pageListing.contactId,
-		);
-		setSeller(sellerInfo);
-	}, []);
+		if (pageListing) {
+			const sellerInfo = listOfTestUsers.find(
+				(a) => a.id == pageListing.contactId,
+			);
+			if (sellerInfo) {
+				setListing(pageListing);
+				setSeller(sellerInfo);
+			} else {
+			}
+		} else {
+			redirect('/not-found');
+		}
+	}, [listingId]);
 
 	const { images } = listing;
 
 	const imageSlider = (
 		<div>
 			{images.length ? (
-				<img
+				<Image
+					height="100"
+					width="100"
+					alt="listing image"
 					src={images?.[imageSelection - 1]}
 					className='object-cover hover:cursor-pointer w-full max-h-[100vh] max-w-[100vw]'
 					onClick={() => blowUpImage(imageSelection)}
@@ -59,14 +69,15 @@ const Listing = () => {
 			<div>
 				<h3 className='my-4'>
 					Category:{' '}
-					<Link href={`/${listing.category}`}> {listing.category} </Link>
+					<Link href={`/${listing.subcategory}`}> {listing.subcategory} </Link>
 				</h3>
 				<div className='w-full flex flex-col md:flex-row gap-8'>
 					<div className='hidden md:flex w-2/3 flex-col gap-2'>
 						{images?.map((image, index) => (
-							<img
+							<Image
 								src={image}
 								key={index}
+								alt="listing image"
 								className='h-[500px] object-cover hover:cursor-pointer'
 								onClick={() => blowUpImage(index + 1)}
 							/>
@@ -98,15 +109,11 @@ const Listing = () => {
 				onOpenChange={onOpenChange}
 				classNames={{
 					wrapper: 'items-center hidden md:block',
-					backdrop: 'hidden md:block'
+					backdrop: 'hidden md:block',
 				}}
 			>
 				<ModalContent>
-					{() => (
-						<div className='p-4 m-auto w-full'>
-							{imageSlider}
-						</div>
-					)}
+					{() => <div className='p-4 m-auto w-full'>{imageSlider}</div>}
 				</ModalContent>
 			</Modal>
 		</>
