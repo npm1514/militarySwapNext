@@ -2,8 +2,8 @@ const listOfCategories = [
 
 	{
 		category: 'For Sale',
-		link: "for-sale",
-		image: "https://media.smallbiztrends.com/2024/03/The-Best-Things-to-Make-and-Sell-from-Home-in-2024.png",
+		link: "/for-sale",
+		image: "/for-sale.webp",
 		subcategories: [
 			'Antiques',
 			'Appliances',
@@ -15,8 +15,8 @@ const listOfCategories = [
 	},
 	{
 		category: 'Vehicles',
-		link: "vehicles",
-		image: "https://t3.ftcdn.net/jpg/01/23/52/24/360_F_123522493_qV0XZfz5gH3zeWFq1YiNCwpDT8HPfvZL.jpg",
+		link: "/vehicles",
+		image: "/vehicles.jpg",
 		subcategories: [
 			'Cars',
 			'Motorcycles',
@@ -28,8 +28,8 @@ const listOfCategories = [
 	},
 	{
 		category: 'Real Estate',
-		link: "real-estate",
-		image: "https://media.istockphoto.com/id/1026205392/photo/beautiful-luxury-home-exterior-at-twilight.jpg?s=612x612&w=0&k=20&c=HOCqYY0noIVxnp5uQf1MJJEVpsH_d4WtVQ6-OwVoeDo=",
+		link: "/real-estate",
+		image: "/homes.jpg",
 		subcategories: [
 			'Residential For Sale',
 			'Commercial For Sale',
@@ -42,8 +42,8 @@ const listOfCategories = [
 	},
 	{
 		category: 'Jobs',
-		link: "jobs",
-		image: "https://cms-assets.themuse.com/media/lead/common-interview-questions.png",
+		link: "/jobs",
+		image: "/jobs.webp",
 		subcategories: [
 			'Admin',
 			'Finance',

@@ -24,7 +24,13 @@ const Header = () => {
 				<div className='flex justify-between items-center gap-4'>
 					<div className='flex gap-4 items-center'>
 						<Link href='/'>
-							<Image className='w-[100px]' src='/military-swap-logo.png' alt="site logo"/>
+							<Image
+								className='w-[100px]'
+								height='500'
+								width='500'
+								src='/military-swap-logo.png'
+								alt='site logo'
+							/>
 						</Link>
 						<div className='norwester hidden sm:block'>
 							<h1 className='text-blue leading-none'>Military Swap</h1>

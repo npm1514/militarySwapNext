@@ -1,19 +1,8 @@
-'use client';
-
-import { useParams } from 'next/navigation';
 import classNames from 'classnames';
 import Link from 'next/link';
 import Image from 'next/image';
 
-const ListingCard = ({
-	price,
-	title,
-	images,
-	timePosted,
-	id,
-	className,
-}) => {
-	const { category } = useParams();
+const ListingCard = ({ price, title, images, timePosted, id, className, category }) => {
 	return (
 		<div
 			className={classNames(
@@ -21,10 +10,16 @@ const ListingCard = ({
 				className,
 			)}
 		>
-			<Link href={`/category/${category}/${id}`}>
+			<Link href={`/${category}/${id}`}>
 				{/* fix this */}
 				<div className='h-36 w-full relative'>
-					<Image className='h-full w-full object-cover' src={images?.[0]} alt="listing card image" />
+					<Image
+						className='h-full w-full object-cover'
+						height='500'
+						width='500'
+						src={images?.[0]}
+						alt='listing card image'
+					/>
 					{price && (
 						<h5 className='top-2 left-2 absolute bg-white rounded-md border border-gray-300 p-1'>
 							${price}
@@ -38,6 +33,6 @@ const ListingCard = ({
 			</Link>
 		</div>
 	);
-}
+};
 
 export default ListingCard;

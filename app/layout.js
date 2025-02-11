@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 import './globals.css';
 import { Header, Footer } from './components';
 
@@ -24,19 +24,18 @@ export default function RootLayout({ children }) {
 		return null;
 	};
 	useEffect(() => {
-		if (!getCookie('idme')) {
+		if (process.env.NODE_ENV == 'production' && !getCookie('idme')) {
 			setCookie('idme', true, 7);
 			window.location.href = `https://api.id.me/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_IDME_CLIENT_ID}&redirect_uri=${process.env.NEXT_PUBLIC_IDME_REDIRECT_URI}&response_type=code&scope=${process.env.NEXT_PUBLIC_IDME_SCOPE}`;
 		}
 	}, []);
 	return (
 		<html lang='en'>
-			<head>
-				<link rel='icon' href='/favicon.ico' sizes='any' />
-			</head>
 			<body className='max-w-[1400px] m-auto'>
 				<Header />
-				<main className='p-4 pt-0'>{children}</main>
+				<Suspense>
+					<main className='p-4 pt-0'>{children}</main>
+				</Suspense>
 				<Footer />
 			</body>
 		</html>

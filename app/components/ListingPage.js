@@ -1,12 +1,8 @@
 'use client';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { redirect, useParams } from 'next/navigation';
-import {
-	listOfTestListings,
-	defaultListing,
-} from '../../../data/listOfTestListings';
-import { defaultUser, listOfTestUsers } from '../../../data/listOfTestUsers';
+import { redirect } from 'next/navigation';
+import { defaultUser, listOfTestUsers } from '../data/listOfTestUsers';
 import {
 	Modal,
 	ModalContent,
@@ -15,10 +11,8 @@ import {
 } from '@nextui-org/react';
 import Image from 'next/image';
 
-const Listing = () => {
+const ListingPage = ({ listing }) => {
 	const { isOpen, onOpen, onOpenChange } = useDisclosure();
-	const { listingId } = useParams();
-	const [listing, setListing] = useState(defaultListing);
 	const [seller, setSeller] = useState(defaultUser);
 	const [imageSelection, setImageSelection] = useState(1);
 
@@ -28,20 +22,13 @@ const Listing = () => {
 	};
 
 	useEffect(() => {
-		const pageListing = listOfTestListings.find((a) => a.id == listingId);
-		if (pageListing) {
-			const sellerInfo = listOfTestUsers.find(
-				(a) => a.id == pageListing.contactId,
-			);
-			if (sellerInfo) {
-				setListing(pageListing);
-				setSeller(sellerInfo);
-			} else {
-			}
+		const sellerInfo = listOfTestUsers.find((a) => a.id == listing.contactId);
+		if (sellerInfo) {
+			setSeller(sellerInfo);
 		} else {
 			redirect('/not-found');
 		}
-	}, [listingId]);
+	}, [listing.contactId]);
 
 	const { images } = listing;
 
@@ -67,7 +54,6 @@ const Listing = () => {
 			) : null}
 		</div>
 	);
-
 	return (
 		<>
 			<div>
@@ -111,7 +97,10 @@ const Listing = () => {
 								</a>
 							</h5>
 							<h5>
-								Phone: <a className='text-blue' href={`tel:+1${seller.phone}`}>{seller.phone}</a>
+								Phone:{' '}
+								<a className='text-blue' href={`tel:+1${seller.phone}`}>
+									{seller.phone}
+								</a>
 							</h5>
 						</div>
 					</div>
@@ -136,4 +125,5 @@ const Listing = () => {
 		</>
 	);
 };
-export default Listing;
+
+export default ListingPage;
