@@ -1,25 +1,4 @@
-'use client';
-import { useEffect, useState } from 'react';
-import { redirect, useParams } from 'next/navigation';
-import {
-	listOfTestListings,
-	defaultListing,
-} from '../../data/listOfTestListings';
-import ListingPage from '../../components/ListingPage';
+import { ListingWrapper } from '@/components';
 
-const Listing = () => {
-	const { listingId } = useParams();
-	const [listing, setListing] = useState(defaultListing);
-
-	useEffect(() => {
-		const pageListing = listOfTestListings.find((a) => a.id == listingId);
-		if (pageListing) {
-			setListing(pageListing);
-		} else {
-			// redirect('/not-found');
-		}
-	}, [listingId]);
-
-	return <ListingPage listing={listing} />;
-};
+const Listing = () => <ListingWrapper />;
 export default Listing;

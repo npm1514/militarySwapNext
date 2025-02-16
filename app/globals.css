@@ -117,3 +117,12 @@ p {
 a {
 
 }
+
+.remove-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.remove-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

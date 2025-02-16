@@ -11,7 +11,7 @@ export const listOfTestListings = [
 		category: 'For Sale',
 		categoryLink: '/for-sale',
 		subcategory: 'Farm & Garden',
-		subcategoryLink: '/for-sale?subcategory=Farm%20&%20Garden',
+		subcategoryLink: 'farm-and-garden',
 		contactId: 123456,
 	},
 	{
@@ -27,7 +27,7 @@ export const listOfTestListings = [
 		category: 'For Sale',
 		categoryLink: '/for-sale',
 		subcategory: 'Appliances',
-		subcategoryLink: '/for-sale?subcategory=Appliances',
+		subcategoryLink: 'appliances',
 		contactId: 123456,
 	},
 	{
@@ -43,7 +43,7 @@ export const listOfTestListings = [
 		category: 'For Sale',
 		categoryLink: '/for-sale',
 		subcategory: 'Toys & Games',
-		subcategoryLink: '/for-sale?subcategory=Toys%20&%20Games',
+		subcategoryLink: 'toys-and-games',
 		contactId: 234567,
 	},
 	{
@@ -58,7 +58,7 @@ export const listOfTestListings = [
 		category: 'For Sale',
 		categoryLink: '/for-sale',
 		subcategory: 'Antiques',
-		subcategoryLink: '/for-sale?subcategory=Antiques',
+		subcategoryLink: 'antiques',
 		contactId: 234567,
 	},
 	{
@@ -73,7 +73,7 @@ export const listOfTestListings = [
 		category: 'For Sale',
 		categoryLink: '/for-sale',
 		subcategory: 'Arts & Crafts',
-		subcategoryLink: '/for-sale?subcategory=Arts%20&%20Crafts',
+		subcategoryLink: 'arts-and-crafts',
 		contactId: 345678,
 	},
 ];

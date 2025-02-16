@@ -31,11 +31,9 @@ export default function RootLayout({ children }) {
 	}, []);
 	return (
 		<html lang='en'>
-			<body className='max-w-[1400px] m-auto'>
+			<body className='max-w-[1400px] m-auto flex flex-col h-[100vh] overflow-hidden'>
 				<Header />
-				<Suspense>
-					<main className='p-4 pt-0'>{children}</main>
-				</Suspense>
+					<main className='p-4 pt-0 h-[50vh] w-full overflow-scroll'>{children}</main>
 				<Footer />
 			</body>
 		</html>

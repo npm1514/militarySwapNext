@@ -1,7 +1,6 @@
 'use client';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { redirect } from 'next/navigation';
 import { defaultUser, listOfTestUsers } from '../data/listOfTestUsers';
 import {
 	Modal,
@@ -10,6 +9,7 @@ import {
 	useDisclosure,
 } from '@nextui-org/react';
 import Image from 'next/image';
+import Category from '@/for-sale/page';
 
 const ListingPage = ({ listing }) => {
 	const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -25,8 +25,6 @@ const ListingPage = ({ listing }) => {
 		const sellerInfo = listOfTestUsers.find((a) => a.id == listing.contactId);
 		if (sellerInfo) {
 			setSeller(sellerInfo);
-		} else {
-			redirect('/not-found');
 		}
 	}, [listing.contactId]);
 
@@ -58,8 +56,10 @@ const ListingPage = ({ listing }) => {
 		<>
 			<div>
 				<h3 className='my-4'>
-					Category:{' '}
-					<Link href={`/${listing.subcategory}`}> {listing.subcategory} </Link>
+					<Link className='underline text-blue' href={`${listing.categoryLink}`}>{listing.category}</Link>:{' '}
+					<Link className='underline text-blue' href={`${listing.categoryLink}?subcategory=${listing.subcategoryLink}`}>
+						{listing.subcategory}
+					</Link>
 				</h3>
 				<div className='w-full flex flex-col md:flex-row gap-8'>
 					<div className='hidden md:flex w-2/3 flex-col gap-2'>

@@ -30,14 +30,14 @@ const CategoryCard = ({ className, category, link, subcategories, image }) => {
 					<h3 className='border-b py-4 group-hover:text-white'>{category}</h3>
 				</div>
 			</Link>
-			<div className='w-full flex flex-col justify-between p-2'>
+			<div className='w-full flex flex-col justify-between p-2 h-[160px] overflow-scroll'>
 				{subcategories.map((subcategory) => (
 					<Link
-						key={subcategory}
-						href={`${link}?subcategory=${subcategory}`}
+						key={subcategory.title}
+						href={`${link}?subcategory=${subcategory.link}`}
 						className='hover:text-blue-700 hover:bg-gray-50'
 					>
-						{subcategory}
+						{subcategory.title}
 					</Link>
 				))}
 			</div>

@@ -20,7 +20,7 @@ const Header = () => {
 			? 'flex flex-col gap-8'
 			: 'hidden sm:flex justify-between items-center';
 		return (
-			<div className='flex flex-col gap-4 p-4 border-b border-gray-500'>
+			<div className='flex flex-col gap-4 p-4 border-b border-gray-500 h-full'>
 				<div className='flex justify-between items-center gap-4'>
 					<div className='flex gap-4 items-center'>
 						<Link href='/'>
@@ -64,9 +64,14 @@ const Header = () => {
 							Jobs
 						</Link>
 					</div>
-					<Link className='underline' href='/profile'>
-						Profile
-					</Link>
+					<div className='flex flex-col sm:flex-row gap-2'>
+						<Link className='underline' href='/add-listing'>
+							Add Listing
+						</Link>
+						<Link className='underline' href='/profile'>
+							Profile
+						</Link>
+					</div>
 				</div>
 			</div>
 		);
