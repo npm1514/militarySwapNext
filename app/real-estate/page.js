@@ -1,5 +1,10 @@
-import { CategoryWrapper } from "@/components";
+import { Suspense } from 'react';
+import { CategoryWrapper } from '@/components';
 
-const Category = () => <CategoryWrapper category="Real Estate"/>
+const Category = () => (
+	<Suspense>
+		<CategoryWrapper category='Real Estate' />
+	</Suspense>
+);
 
 export default Category;

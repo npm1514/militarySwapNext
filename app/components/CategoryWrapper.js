@@ -6,6 +6,7 @@ import { ListingCard } from '@/components';
 import { listOfTestListings } from '@/data/listOfTestListings';
 import listOfCategories from '@/data/listOfCategories';
 import { Button, Spinner } from '@nextui-org/react';
+import { linkToTitle, titleToLink } from '@/util/funcs';
 
 const CategoryWrapper = ({ category }) => {
 	const [listOfListings, setListOfListings] = useState(undefined);
@@ -13,6 +14,7 @@ const CategoryWrapper = ({ category }) => {
 	const router = useRouter();
 	const pathname = usePathname();
 	const subcategoryLink = searchParams.get('subcategory');
+	const subcategory = linkToTitle(subcategoryLink);
 
 	useEffect(() => {
 		const list = listOfTestListings.filter(
@@ -26,7 +28,7 @@ const CategoryWrapper = ({ category }) => {
 
 	const updateSubcategory = (sub) => {
 		const updatedSearchParams = new URLSearchParams();
-		updatedSearchParams.set('subcategory', sub.link);
+		updatedSearchParams.set('subcategory', titleToLink(sub));
 		router.push(pathname + '?' + updatedSearchParams.toString());
 	};
 
@@ -34,11 +36,12 @@ const CategoryWrapper = ({ category }) => {
 		router.push(pathname);
 	};
 
-	const filteredListOfListings = subcategoryLink && listOfListings?.length
-		? listOfListings.filter(
-				(listing) => listing.subcategoryLink == subcategoryLink,
-		  )
-		: listOfListings;
+	const filteredListOfListings =
+		subcategoryLink && listOfListings?.length
+			? listOfListings.filter(
+					(listing) => listing.subcategory == subcategory,
+			  )
+			: listOfListings;
 	return (
 		<div className='w-full h-full flex flex-col gap-4'>
 			<h2>{category}</h2>
@@ -50,9 +53,9 @@ const CategoryWrapper = ({ category }) => {
 								key={i}
 								onPress={() => updateSubcategory(sub)}
 								color='primary'
-								variant={subcategoryLink == sub.link ? 'bordered' : 'solid'}
+								variant={subcategory == sub ? 'bordered' : 'solid'}
 							>
-								{sub.title}
+								{sub}
 							</Button>
 						))}
 					</div>
@@ -80,7 +83,8 @@ const CategoryWrapper = ({ category }) => {
 					))
 				) : filteredListOfListings != undefined ? (
 					<h3>
-						Sorry! There are no {category} listings currently. Check back later.
+						Sorry! There are no {subcategory || category} listings currently.{' '}
+						{subcategory ? 'Clear your filters or check' : 'Check'} back later.
 					</h3>
 				) : (
 					<Spinner />

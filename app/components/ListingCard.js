@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import Link from 'next/link';
 import Image from 'next/image';
 
-const ListingCard = ({ price, title, images, timePosted, id, className, category }) => {
+const ListingCard = ({ price, title, images, datePosted, id, className, category }) => {
 	return (
 		<div
 			className={classNames(
@@ -28,7 +28,7 @@ const ListingCard = ({ price, title, images, timePosted, id, className, category
 				</div>
 				<div className='h-12 w-full flex flex-col justify-between p-2 group-hover:text-white'>
 					<h5>{title}</h5>
-					<p>Posted: {timePosted}</p>
+					<p>Posted: {datePosted}</p>
 				</div>
 			</Link>
 		</div>

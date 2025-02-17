@@ -9,7 +9,7 @@ import {
 	useDisclosure,
 } from '@nextui-org/react';
 import Image from 'next/image';
-import Category from '@/for-sale/page';
+import { titleToLink } from '@/util/funcs';
 
 const ListingPage = ({ listing }) => {
 	const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -52,39 +52,52 @@ const ListingPage = ({ listing }) => {
 			) : null}
 		</div>
 	);
+
+	const categoryLink = titleToLink(listing.category);
 	return (
 		<>
-			<div>
-				<h3 className='my-4'>
-					<Link className='underline text-blue' href={`${listing.categoryLink}`}>{listing.category}</Link>:{' '}
-					<Link className='underline text-blue' href={`${listing.categoryLink}?subcategory=${listing.subcategoryLink}`}>
+			<div className='flex flex-col gap-4'>
+				<h3 className='mt-4'>
+					<Link className='text-blue' href={`/${categoryLink}`}>
+						{listing.category}
+					</Link>
+					:{' '}
+					<Link
+						className='text-blue'
+						href={`/${categoryLink}?subcategory=${titleToLink(
+							listing.subcategory,
+						)}`}
+					>
 						{listing.subcategory}
 					</Link>
 				</h3>
+				<h3 className='md:hidden'>{listing.title}</h3>
 				<div className='w-full flex flex-col md:flex-row gap-8'>
-					<div className='hidden md:flex w-2/3 flex-col gap-2'>
-						{images?.map((image, index) => (
-							<Image
-								height='500'
-								width='500'
-								src={image}
-								key={index}
-								alt='listing image'
-								className='w-full object-cover hover:cursor-pointer rounded-3xl'
-								onClick={() => blowUpImage(index + 1)}
-							/>
-						))}
-					</div>
+					{images ? (
+						<div className='hidden md:flex w-2/3 flex-col gap-2'>
+							{images?.map((image, index) => (
+								<Image
+									height='500'
+									width='500'
+									src={image}
+									key={index}
+									alt='listing image'
+									className='w-full object-cover hover:cursor-pointer rounded-3xl'
+									onClick={() => blowUpImage(index + 1)}
+								/>
+							))}
+						</div>
+					) : null}
 					<div className='block w-full md:hidden md:h-[500px]'>
 						{imageSlider}
 					</div>
 					<div className='w-1/3 flex flex-col gap-8'>
 						<div className='flex flex-col gap-2'>
-							<h3>{listing.title} </h3>
-							<h5> Price: ${listing.price} </h5>
+							<h3 className='hidden md:block'>{listing.title} </h3>
+							{listing.price && <h5> Price: ${listing.price} </h5>}
 							<h5> Description: {listing.description} </h5>
-							<h5> Condition: {listing.condition} </h5>
-							<h5> Posted on {listing.timePosted} </h5>
+							{listing.condition && <h5> Condition: {listing.condition} </h5>}
+							<h5> Posted on {listing.datePosted} </h5>
 						</div>
 						<div className='flex flex-col gap-2'>
 							<h3>Seller Info </h3>

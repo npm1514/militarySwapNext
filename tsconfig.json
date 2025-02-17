@@ -34,7 +34,7 @@
     "**/*.tsx",
     "next.config.js",
     "tailwind.config.js"
-, "app/idme/callback/page.js"  ],
+, "app/idme/callback/page.js", "app/add-listing/page.js"  ],
   "exclude": [
     "node_modules"
   ]

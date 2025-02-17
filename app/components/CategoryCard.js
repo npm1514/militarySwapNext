@@ -3,8 +3,9 @@
 import classNames from 'classnames';
 import Image from 'next/image';
 import Link from 'next/link';
+import { titleToLink } from '@/util/funcs';
 
-const CategoryCard = ({ className, category, link, subcategories, image }) => {
+const CategoryCard = ({ className, category, subcategories, image }) => {
 	return (
 		<div
 			className={classNames(
@@ -12,7 +13,7 @@ const CategoryCard = ({ className, category, link, subcategories, image }) => {
 				className,
 			)}
 		>
-			<Link href={link}>
+			<Link href={`/${titleToLink(category)}`}>
 				{/* fix this */}
 				<div className='group-hover:bg-blue'>
 					<div className='h-36 w-full relative'>
@@ -33,11 +34,13 @@ const CategoryCard = ({ className, category, link, subcategories, image }) => {
 			<div className='w-full flex flex-col justify-between p-2 h-[160px] overflow-scroll'>
 				{subcategories.map((subcategory) => (
 					<Link
-						key={subcategory.title}
-						href={`${link}?subcategory=${subcategory.link}`}
+						key={subcategory}
+						href={`/${titleToLink(category)}?subcategory=${titleToLink(
+							subcategory
+						)}`}
 						className='hover:text-blue-700 hover:bg-gray-50'
 					>
-						{subcategory.title}
+						{subcategory}
 					</Link>
 				))}
 			</div>
