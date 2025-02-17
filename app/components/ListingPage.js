@@ -1,19 +1,23 @@
 'use client';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { redirect } from 'next/navigation';
 import { defaultUser, listOfTestUsers } from '../data/listOfTestUsers';
 import {
+	Button,
 	Modal,
 	ModalContent,
 	Pagination,
 	useDisclosure,
 } from '@nextui-org/react';
-import Image from 'next/image';
+import NextImage from 'next/image';
 import { titleToLink } from '@/util/funcs';
 
-const ListingPage = ({ listing }) => {
+const ListingPage = ({ listing, isPreview, goBack, createListing }) => {
+	const images = listing.images;
 	const { isOpen, onOpen, onOpenChange } = useDisclosure();
 	const [seller, setSeller] = useState(defaultUser);
+	const [imgsGood, setImgsGood] = useState(true);
 	const [imageSelection, setImageSelection] = useState(1);
 
 	const blowUpImage = (index) => {
@@ -28,30 +32,52 @@ const ListingPage = ({ listing }) => {
 		}
 	}, [listing.contactId]);
 
-	const { images } = listing;
+	useEffect(() => {
+		images?.map((src) => {
+			var img = new Image();
+			img.onload = () => {};
+			img.onerror = () => {
+				setImgsGood(false);
+			};
+			img.src = src;
+		});
+	}, [images]);
 
-	const imageSlider = (
-		<div className='flex flex-col gap-4 md:h-[80vh]'>
-			{images.length ? (
-				<Image
-					height='500'
-					width='500'
-					alt='listing image'
-					src={images?.[imageSelection - 1]}
-					className='object-cover hover:cursor-pointer w-full max-w-[100vw] rounded-3xl'
-					onClick={() => blowUpImage(imageSelection)}
-					style={{ height: 'calc(100% - 52px)' }}
-				/>
-			) : null}
-			{images.length > 1 ? (
-				<Pagination
-					total={images?.length}
-					page={imageSelection}
-					onChange={(val) => setImageSelection(val)}
-				/>
-			) : null}
-		</div>
-	);
+	const imageSlider = () => {
+		return (
+			<div className='flex flex-col gap-4 md:h-[80vh]'>
+				{images?.length && imgsGood ? (
+					<NextImage
+						height='500'
+						width='500'
+						alt='listing image'
+						src={images?.[imageSelection - 1]}
+						className='object-cover hover:cursor-pointer w-full max-w-[100vw] rounded-3xl'
+						onClick={() => blowUpImage(imageSelection)}
+						style={{ height: 'calc(100% - 52px)' }}
+					/>
+				) : null}
+				{images?.length && !imgsGood ? (
+					<NextImage
+						height='500'
+						width='500'
+						alt='listing image'
+						src={URL.createObjectURL(images?.[imageSelection - 1])}
+						className='object-cover hover:cursor-pointer w-full max-w-[100vw] rounded-3xl'
+						onClick={() => blowUpImage(imageSelection)}
+						style={{ height: 'calc(100% - 52px)' }}
+					/>
+				) : null}
+				{images?.length > 1 ? (
+					<Pagination
+						total={images?.length}
+						page={imageSelection}
+						onChange={(val) => setImageSelection(val)}
+					/>
+				) : null}
+			</div>
+		);
+	};
 
 	const categoryLink = titleToLink(listing.category);
 	return (
@@ -75,21 +101,34 @@ const ListingPage = ({ listing }) => {
 				<div className='w-full flex flex-col md:flex-row gap-8'>
 					{images ? (
 						<div className='hidden md:flex w-2/3 flex-col gap-2'>
-							{images?.map((image, index) => (
-								<Image
-									height='500'
-									width='500'
-									src={image}
-									key={index}
-									alt='listing image'
-									className='w-full object-cover hover:cursor-pointer rounded-3xl'
-									onClick={() => blowUpImage(index + 1)}
-								/>
-							))}
+							{imgsGood &&
+								images?.map((image, index) => (
+									<NextImage
+										height='500'
+										width='500'
+										src={image}
+										key={index}
+										alt='listing image'
+										className='w-full object-cover hover:cursor-pointer rounded-3xl'
+										onClick={() => blowUpImage(index + 1)}
+									/>
+								))}
+							{!imgsGood &&
+								images?.map((image, index) => (
+									<NextImage
+										height='500'
+										width='500'
+										src={URL.createObjectURL(image)}
+										key={index}
+										alt='listing image'
+										className='w-full object-cover hover:cursor-pointer rounded-3xl'
+										onClick={() => blowUpImage(index + 1)}
+									/>
+								))}
 						</div>
 					) : null}
 					<div className='block w-full md:hidden md:h-[500px]'>
-						{imageSlider}
+						{imageSlider()}
 					</div>
 					<div className='w-1/3 flex flex-col gap-8'>
 						<div className='flex flex-col gap-2'>
@@ -116,6 +155,12 @@ const ListingPage = ({ listing }) => {
 								</a>
 							</h5>
 						</div>
+						{isPreview && (
+							<div className='flex flex-col gap-4'>
+								<Button color='warning' onPress={goBack}>Edit</Button>
+								<Button color="success" onPress={createListing}>Create Listing</Button>
+							</div>
+						)}
 					</div>
 				</div>
 			</div>
@@ -132,7 +177,7 @@ const ListingPage = ({ listing }) => {
 				}}
 			>
 				<ModalContent>
-					{() => <div className='p-4 m-auto w-full'>{imageSlider}</div>}
+					{() => <div className='p-4 m-auto w-full'>{imageSlider()}</div>}
 				</ModalContent>
 			</Modal>
 		</>

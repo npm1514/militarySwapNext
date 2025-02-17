@@ -25,9 +25,9 @@ const Header = () => {
 					<div className='flex gap-4 items-center'>
 						<Link href='/'>
 							<Image
-								className='w-[100px]'
-								height='500'
-								width='500'
+								className='h-auto w-auto'
+								height='60'
+								width='60'
 								src='/military-swap-logo.png'
 								alt='site logo'
 							/>

@@ -27,12 +27,4 @@ export const listOfTestUsers = [
 		itemsList: [5678901],
 	},
 ];
-export const defaultUser = {
-	name: '',
-	email: '',
-	branch: '',
-	zip: 0,
-	id: 0,
-	phone: '',
-	itemsList: [],
-};
+export const defaultUser = { ...listOfTestUsers[0] };
